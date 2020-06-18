@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VirginMediaScenario.Models.Scenario>
+@model IEnumerable<VirginMediaScenario.ViewModels.ScenarioSummary>
 
 @{
     ViewData["Title"] = "Summary";
@@ -6,15 +6,9 @@
 
 <h1>Summary to be created here</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ScenarioID)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -23,9 +17,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Forename)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.SampleDate)
@@ -42,6 +33,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.NetworkLayerID)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.count)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -50,9 +44,6 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ScenarioID)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
@@ -60,9 +51,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Forename)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserID)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.SampleDate)
@@ -80,9 +68,7 @@
                     @Html.DisplayFor(modelItem => item.NetworkLayerID)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    @Html.DisplayFor(modelItem => item.count)
                 </td>
             </tr>
         }
