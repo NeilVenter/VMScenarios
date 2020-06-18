@@ -26,10 +26,27 @@ namespace VirginMediaScenario.Controllers
         }
 
         // GET: Scenarios
-        public async Task<IActionResult> Summary()
+        public ActionResult Summary()
         {
-            
-            return View(await _context.scenarios.ToListAsync());
+         
+            var query = (from g in _context.scenarios.ToList()
+                         group g by new { g.Name, g.Forename, g.Surname, g.UserID, 
+                             g.SampleDate, g.CreationDate, g.NumMonths, g.MarketID, g.NetworkLayerID } into r
+                         select new ScenarioSummary
+                         {
+                             Name = r.Key.Name,
+                             Forename = r.Key.Forename,
+                             Surname = r.Key.Surname,
+                             SampleDate = r.Key.SampleDate,
+                             CreationDate = r.Key.CreationDate,
+                             NumMonths = r.Key.NumMonths,
+                             MarketID = r.Key.MarketID,
+                             NetworkLayerID = r.Key.NetworkLayerID,
+                             count = r.Count()
+                         }).ToList();
+
+
+            return View(query);
         }
 
 
